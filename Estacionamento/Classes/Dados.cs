@@ -164,7 +164,7 @@ namespace Estacionamento.Classes
         {
             
             bool cadastrado = false;
-            if (cpf.Length != 11)
+            if (cpf.Length != 14)
             {
                 MessageBox.Show("CPF inválido.");
                 return cadastrado;

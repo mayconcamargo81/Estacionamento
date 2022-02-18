@@ -45,11 +45,11 @@
             this.tcPrincipal = new System.Windows.Forms.TabControl();
             this.tpClientes = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtCpf = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTelefone = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCadastroCliente = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -139,67 +139,71 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtTelefone);
+            this.groupBox3.Controls.Add(this.txtCpf);
             this.groupBox3.Controls.Add(this.txtEndereco);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.txtCpf);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.txtTelefone);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.btnCadastroCliente);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.txtNome);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(3, 315);
+            this.groupBox3.Location = new System.Drawing.Point(3, 344);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(340, 158);
+            this.groupBox3.Size = new System.Drawing.Size(340, 129);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Novo Cliente";
             // 
+            // txtTelefone
+            // 
+            this.txtTelefone.Location = new System.Drawing.Point(239, 71);
+            this.txtTelefone.Mask = "(99) 0000-0000";
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(87, 20);
+            this.txtTelefone.TabIndex = 3;
+            // 
+            // txtCpf
+            // 
+            this.txtCpf.Location = new System.Drawing.Point(62, 71);
+            this.txtCpf.Mask = "999.999.999-99";
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(87, 20);
+            this.txtCpf.TabIndex = 2;
+            this.txtCpf.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(91, 48);
+            this.txtEndereco.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEndereco.Location = new System.Drawing.Point(62, 45);
             this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(137, 20);
-            this.txtEndereco.TabIndex = 11;
+            this.txtEndereco.Size = new System.Drawing.Size(264, 20);
+            this.txtEndereco.TabIndex = 1;
             this.txtEndereco.TextChanged += new System.EventHandler(this.txtEndereco_TextChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(29, 51);
+            this.label8.Location = new System.Drawing.Point(3, 48);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 10;
             this.label8.Text = "Endereço";
             // 
-            // txtCpf
-            // 
-            this.txtCpf.Location = new System.Drawing.Point(91, 72);
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(137, 20);
-            this.txtCpf.TabIndex = 9;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(55, 75);
+            this.label6.Location = new System.Drawing.Point(29, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "CPF";
             // 
-            // txtTelefone
-            // 
-            this.txtTelefone.Location = new System.Drawing.Point(91, 98);
-            this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(137, 20);
-            this.txtTelefone.TabIndex = 7;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(33, 101);
+            this.label7.Location = new System.Drawing.Point(179, 74);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 6;
@@ -208,10 +212,10 @@
             // btnCadastroCliente
             // 
             this.btnCadastroCliente.ForeColor = System.Drawing.Color.Black;
-            this.btnCadastroCliente.Location = new System.Drawing.Point(91, 128);
+            this.btnCadastroCliente.Location = new System.Drawing.Point(62, 97);
             this.btnCadastroCliente.Name = "btnCadastroCliente";
-            this.btnCadastroCliente.Size = new System.Drawing.Size(137, 23);
-            this.btnCadastroCliente.TabIndex = 5;
+            this.btnCadastroCliente.Size = new System.Drawing.Size(264, 23);
+            this.btnCadastroCliente.TabIndex = 4;
             this.btnCadastroCliente.Text = "Cadastrar cliente";
             this.btnCadastroCliente.UseVisualStyleBackColor = true;
             this.btnCadastroCliente.Click += new System.EventHandler(this.btnCadastroCliente_Click);
@@ -219,7 +223,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(47, 22);
+            this.label9.Location = new System.Drawing.Point(21, 22);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 3;
@@ -227,10 +231,11 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(91, 19);
+            this.txtNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNome.Location = new System.Drawing.Point(62, 19);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(235, 20);
-            this.txtNome.TabIndex = 2;
+            this.txtNome.Size = new System.Drawing.Size(264, 20);
+            this.txtNome.TabIndex = 0;
             // 
             // dgClientes
             // 
@@ -271,7 +276,7 @@
             this.dgClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgClientes.RowHeadersVisible = false;
             this.dgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgClientes.Size = new System.Drawing.Size(813, 306);
+            this.dgClientes.Size = new System.Drawing.Size(813, 335);
             this.dgClientes.TabIndex = 1;
             this.dgClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientes_CellContentClick);
             // 
@@ -300,9 +305,9 @@
             this.groupBox1.Controls.Add(this.txtDescricaoCadastro);
             this.groupBox1.Controls.Add(this.txtPlacaCadastro);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(3, 254);
+            this.groupBox1.Location = new System.Drawing.Point(3, 363);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(212, 219);
+            this.groupBox1.Size = new System.Drawing.Size(381, 110);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Novo veículo";
@@ -310,10 +315,10 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(81, 181);
+            this.button1.Location = new System.Drawing.Point(258, 75);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 22);
-            this.button1.TabIndex = 11;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Imprimir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -323,10 +328,10 @@
             this.cbxCliente.DataSource = this.clienteBindingSource1;
             this.cbxCliente.DisplayMember = "Id";
             this.cbxCliente.FormattingEnabled = true;
-            this.cbxCliente.Location = new System.Drawing.Point(81, 119);
+            this.cbxCliente.Location = new System.Drawing.Point(258, 49);
             this.cbxCliente.Name = "cbxCliente";
             this.cbxCliente.Size = new System.Drawing.Size(100, 21);
-            this.cbxCliente.TabIndex = 10;
+            this.cbxCliente.TabIndex = 3;
             this.cbxCliente.ValueMember = "Id";
             this.cbxCliente.SelectedIndexChanged += new System.EventHandler(this.cbxCliente_SelectedIndexChanged);
             // 
@@ -342,16 +347,17 @@
             // 
             // txCor
             // 
-            this.txCor.Location = new System.Drawing.Point(81, 87);
+            this.txCor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txCor.Location = new System.Drawing.Point(67, 49);
             this.txCor.Name = "txCor";
             this.txCor.Size = new System.Drawing.Size(100, 20);
-            this.txCor.TabIndex = 9;
+            this.txCor.TabIndex = 2;
             this.txCor.TextChanged += new System.EventHandler(this.txIdCliente_TextChanged);
             // 
             // lbIdCliente
             // 
             this.lbIdCliente.AutoSize = true;
-            this.lbIdCliente.Location = new System.Drawing.Point(22, 119);
+            this.lbIdCliente.Location = new System.Drawing.Point(213, 52);
             this.lbIdCliente.Name = "lbIdCliente";
             this.lbIdCliente.Size = new System.Drawing.Size(39, 13);
             this.lbIdCliente.TabIndex = 8;
@@ -360,7 +366,7 @@
             // lbCor
             // 
             this.lbCor.AutoSize = true;
-            this.lbCor.Location = new System.Drawing.Point(38, 90);
+            this.lbCor.Location = new System.Drawing.Point(38, 52);
             this.lbCor.Name = "lbCor";
             this.lbCor.Size = new System.Drawing.Size(23, 13);
             this.lbCor.TabIndex = 6;
@@ -369,10 +375,10 @@
             // btnCadastrarVeiculo
             // 
             this.btnCadastrarVeiculo.ForeColor = System.Drawing.Color.Black;
-            this.btnCadastrarVeiculo.Location = new System.Drawing.Point(81, 152);
+            this.btnCadastrarVeiculo.Location = new System.Drawing.Point(67, 75);
             this.btnCadastrarVeiculo.Name = "btnCadastrarVeiculo";
             this.btnCadastrarVeiculo.Size = new System.Drawing.Size(100, 23);
-            this.btnCadastrarVeiculo.TabIndex = 5;
+            this.btnCadastrarVeiculo.TabIndex = 4;
             this.btnCadastrarVeiculo.Text = "Cadastrar veículo";
             this.btnCadastrarVeiculo.UseVisualStyleBackColor = true;
             this.btnCadastrarVeiculo.Click += new System.EventHandler(this.btnCadastrarVeiculo_Click);
@@ -380,7 +386,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 59);
+            this.label3.Location = new System.Drawing.Point(197, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 4;
@@ -398,19 +404,21 @@
             // 
             // txtDescricaoCadastro
             // 
-            this.txtDescricaoCadastro.Location = new System.Drawing.Point(81, 56);
+            this.txtDescricaoCadastro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDescricaoCadastro.Location = new System.Drawing.Point(258, 23);
             this.txtDescricaoCadastro.Name = "txtDescricaoCadastro";
             this.txtDescricaoCadastro.Size = new System.Drawing.Size(100, 20);
-            this.txtDescricaoCadastro.TabIndex = 2;
+            this.txtDescricaoCadastro.TabIndex = 1;
             // 
             // txtPlacaCadastro
             // 
-            this.txtPlacaCadastro.Location = new System.Drawing.Point(81, 23);
+            this.txtPlacaCadastro.Location = new System.Drawing.Point(67, 23);
             this.txtPlacaCadastro.Mask = "CCC-9999";
             this.txtPlacaCadastro.Name = "txtPlacaCadastro";
             this.txtPlacaCadastro.PromptChar = ' ';
             this.txtPlacaCadastro.Size = new System.Drawing.Size(100, 20);
-            this.txtPlacaCadastro.TabIndex = 1;
+            this.txtPlacaCadastro.TabIndex = 0;
+            this.txtPlacaCadastro.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtPlacaCadastro_MaskInputRejected);
             // 
             // dgVeiculos
             // 
@@ -451,7 +459,7 @@
             this.dgVeiculos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgVeiculos.RowHeadersVisible = false;
             this.dgVeiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgVeiculos.Size = new System.Drawing.Size(813, 245);
+            this.dgVeiculos.Size = new System.Drawing.Size(813, 354);
             this.dgVeiculos.TabIndex = 0;
             this.dgVeiculos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculos_CellContentClick);
             // 
@@ -755,9 +763,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtCpf;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtTelefone;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCadastroCliente;
         private System.Windows.Forms.Label label9;
@@ -775,6 +781,8 @@
         private EstacionamentoDataSet1TableAdapters.ClienteTableAdapter clienteTableAdapter1;
         private System.Windows.Forms.ComboBox cbxCliente;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MaskedTextBox txtCpf;
+        private System.Windows.Forms.MaskedTextBox txtTelefone;
     }
 }
 

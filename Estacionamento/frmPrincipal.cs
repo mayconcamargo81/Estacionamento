@@ -202,6 +202,16 @@ namespace Estacionamento
 
         }
 
+        private void txtPlacaCadastro_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
 
 
 
