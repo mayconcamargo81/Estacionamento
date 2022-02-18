@@ -31,18 +31,28 @@ namespace Estacionamento
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.veiculoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estacionamentoDt = new Estacionamento.EstacionamentoDt();
             this.vagaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estacionamentods = new Estacionamento.Estacionamentods();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.vagaTableAdapter = new Estacionamento.EstacionamentodsTableAdapters.VagaTableAdapter();
-            this.estacionamentoDt = new Estacionamento.EstacionamentoDt();
-            this.veiculoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.veiculoTableAdapter = new Estacionamento.EstacionamentoDtTableAdapters.VeiculoTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.veiculoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoDt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vagaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentods)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoDt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.veiculoBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // veiculoBindingSource
+            // 
+            this.veiculoBindingSource.DataMember = "Veiculo";
+            this.veiculoBindingSource.DataSource = this.estacionamentoDt;
+            // 
+            // estacionamentoDt
+            // 
+            this.estacionamentoDt.DataSetName = "EstacionamentoDt";
+            this.estacionamentoDt.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // vagaBindingSource
             // 
@@ -64,22 +74,12 @@ namespace Estacionamento
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(800, 450);
+            this.reportViewer1.Size = new System.Drawing.Size(928, 523);
             this.reportViewer1.TabIndex = 0;
             // 
             // vagaTableAdapter
             // 
             this.vagaTableAdapter.ClearBeforeFill = true;
-            // 
-            // estacionamentoDt
-            // 
-            this.estacionamentoDt.DataSetName = "EstacionamentoDt";
-            this.estacionamentoDt.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // veiculoBindingSource
-            // 
-            this.veiculoBindingSource.DataMember = "Veiculo";
-            this.veiculoBindingSource.DataSource = this.estacionamentoDt;
             // 
             // veiculoTableAdapter
             // 
@@ -89,15 +89,15 @@ namespace Estacionamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(928, 523);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmRelatorio";
             this.Text = "FrmRelatorio";
             this.Load += new System.EventHandler(this.FrmRelatorio_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.veiculoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoDt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vagaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentods)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoDt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.veiculoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
