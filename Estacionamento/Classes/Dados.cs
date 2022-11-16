@@ -13,7 +13,7 @@ namespace Estacionamento.Classes
 
     public class Dados
     {
-        //SqlConnection conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexaoEstacionamento"].ConnectionString);
+        SqlConnection conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexaoEstacionamento"].ConnectionString);
 		SqlCommand cmd = new SqlCommand();
 		Conexao con = new Conexao();
 		//SqlDataReader dr;
