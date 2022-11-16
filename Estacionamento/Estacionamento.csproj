@@ -81,34 +81,52 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EstacionamentoDt.xsd</DependentUpon>
     </Compile>
-    <Compile Include="frmPeriodo.cs">
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Presenters\Conexao\Conexao.cs" />
+    <Compile Include="Presenters\Login\LoginPresenters.cs" />
+    <Compile Include="View\Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPeriodo.Designer.cs">
+    <Compile Include="View\Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Periodo\frmPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Periodo\frmPeriodo.Designer.cs">
       <DependentUpon>frmPeriodo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPrincipal.cs">
+    <Compile Include="View\Principal\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPrincipal.Designer.cs">
+    <Compile Include="View\Principal\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmRelatorio.cs">
+    <Compile Include="View\Relatorio\FrmRelatorio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmRelatorio.Designer.cs">
+    <Compile Include="View\Relatorio\FrmRelatorio.Designer.cs">
       <DependentUpon>FrmRelatorio.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="frmPeriodo.resx">
+    <Compile Include="View\Usuario\frmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuario\frmUsuario.Designer.cs">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\Login\FrmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Periodo\frmPeriodo.resx">
       <DependentUpon>frmPeriodo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPrincipal.resx">
+    <EmbeddedResource Include="View\Principal\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmRelatorio.resx">
+    <EmbeddedResource Include="View\Relatorio\FrmRelatorio.resx">
       <DependentUpon>FrmRelatorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -122,7 +140,10 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Relatorio.rdlc" />
-    <None Include="App.config" />
+    <EmbeddedResource Include="View\Usuario\frmUsuario.resx">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Presenters\Conexao\App.config" />
     <None Include="EstacionamentoDataSet1.xsc">
       <DependentUpon>EstacionamentoDataSet1.xsd</DependentUpon>
     </None>
@@ -180,6 +201,8 @@
     <None Include="Resources\imagqes.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="login.png" />
+    <None Include="car-insurance-icon-192073712.png" />
     <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <ItemGroup>
