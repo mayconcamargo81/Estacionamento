@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Estacionamento.Presenters.Conexao;
 
@@ -13,10 +14,11 @@ namespace Estacionamento.Classes
 
     public class Dados
     {
-        SqlConnection conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexaoEstacionamento"].ConnectionString);
+		public String mensagem = "";
+		SqlConnection conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexaoEstacionamento"].ConnectionString);
 		SqlCommand cmd = new SqlCommand();
 		Conexao con = new Conexao();
-		//SqlDataReader dr;
+		SqlDataReader dr;
 		public int RetornaQuantidadeDeVagas()
         {
             int vagas = 50;
@@ -38,7 +40,7 @@ namespace Estacionamento.Classes
             {
 				cmd.CommandText = "select VeiculoPlaca from Vaga where Numero = @Numero and Saida is null";
                 cmd.Parameters.Add("@Numero", SqlDbType.Int).Value = numeroVaga;
-				con.conectar();
+				cmd.Connection = con.conectar();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                     placa = dr[0].ToString();
@@ -52,37 +54,60 @@ namespace Estacionamento.Classes
         }
 
         public DataTable RetornaVeiculosCadastrados()
-        {
-            var veiculos = new DataTable();
-            try
-            {
-				
-                SqlDataAdapter dr = new SqlDataAdapter("select * from Veiculo", con.ToString());
-                dr.Fill(veiculos);
-            }
-            catch
-            {
-                MessageBox.Show("Não foi possível ler os veículos do banco de dados.");
-            }
-            return veiculos;
-        }
+		{
+			var veiculos = new DataTable();
+			try
+			{
+				SqlDataAdapter da = new SqlDataAdapter("select * from Veiculo", conexao);
+				da.Fill(veiculos);
+			}
+			catch
+			{
+				MessageBox.Show("Não foi possível ler os veículos do banco de dados.");
+			}
+			return veiculos;
+		}
 
-        public DataTable RetornaClientesCadastrados()
-        {
-            var clientes = new DataTable();
-            try
-            {
-                SqlDataAdapter dr = new SqlDataAdapter("select * from Cliente", con.ToString());
-                dr.Fill(clientes);
-            }
-            catch
-            {
-                MessageBox.Show("Não foi possível ler os clientes do banco de dados.");
-            }
-            return clientes;
-        }
+		public DataTable RetornaClientesCadastrados()
+		//     {
+		//         var clientes = new DataTable();
 
-        public bool IncluirVeiculoNaVaga(string placa, int numeroVaga)
+		//cmd.CommandText = "select * from Cliente";
+		//try
+		//         {
+		//	cmd.Connection = cmd.Connection = con.conectar();
+		//	dr = cmd.ExecuteReader();
+		//	//SqlDataAdapter dr = new SqlDataAdapter("select * from Cliente", con.ToString());
+		//	//dr.Fill(clientes);
+		//	if (dr.HasRows)//se foi encontrado
+		//	{
+		//		return dr.(clientes);
+		//	}
+		//	con.desconectar();
+		//	dr.Close();
+		//}
+		//         catch
+		//         {
+		//             MessageBox.Show("Não foi possível ler os clientes do banco de dados.");
+		//         }
+		//         return clientes;
+		//     }
+
+		{
+			var clientes = new DataTable();
+			try
+			{
+				SqlDataAdapter da = new SqlDataAdapter("select * from Cliente", conexao);
+				da.Fill(clientes);
+			}
+			catch
+			{
+				MessageBox.Show("Não foi possível ler os clientes do banco de dados.");
+			}
+			return clientes;
+		}
+
+		public bool IncluirVeiculoNaVaga(string placa, int numeroVaga)
         {
             bool incluidoNaVaga = false;
             try
@@ -93,7 +118,7 @@ namespace Estacionamento.Classes
                 cmd.Parameters.Add("@Numero", SqlDbType.Int).Value = numeroVaga;
                 cmd.Parameters.Add("@VeiculoPlaca", SqlDbType.VarChar).Value = placa;
                 cmd.Parameters.Add("@Entrada", SqlDbType.DateTime).Value = dhEntrada;
-				con.conectar();
+				cmd.Connection = con.conectar();
                 cmd.ExecuteNonQuery();
 				con.desconectar();
 				incluidoNaVaga = true;
@@ -113,7 +138,7 @@ namespace Estacionamento.Classes
             {
 				cmd.CommandText = "select Placa from Veiculo where Placa = @Placa";
                 cmd.Parameters.Add("@Placa", SqlDbType.VarChar).Value = placa;
-				con.conectar();
+				cmd.Connection = con.conectar();
 				SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                     encontrado = true;
@@ -149,11 +174,13 @@ namespace Estacionamento.Classes
                 cmd.Parameters.Add("Descricao", SqlDbType.VarChar).Value = descricao;
                 cmd.Parameters.Add("Cor", SqlDbType.VarChar).Value = cor;
                 cmd.Parameters.Add("@IdCliente", SqlDbType.Int).Value = idcliente;
-				con.conectar();
+				cmd.Connection = cmd.Connection = con.conectar();
 				cmd.ExecuteNonQuery();
 				con.desconectar();
 				cadastrado = true;
-            }
+				
+				
+			}
             // catch //(Exception e)
             // {
             //    MessageBox.Show("Não foi possível cadastrar o veículo.");
@@ -174,32 +201,49 @@ namespace Estacionamento.Classes
                 MessageBox.Show("CPF inválido.");
                 return cadastrado;
             }
-            if (string.IsNullOrEmpty(cpf))
-            {
-                MessageBox.Show("Informe o cliente.");
-                return cadastrado;
-            }
+			if (string.IsNullOrEmpty(cpf))
+			{
+				MessageBox.Show("Informe o cliente.");
+				return cadastrado;
 
-            try
-            {
-                var dhCadastro = DateTime.Now;
-				cmd.CommandText = @"insert into Cliente (Nome, CPF, Endereco, Telefone, Cadastro) values
-                                                                      (@Nome, @CPF, @Endereco, @Telefone, @Cadastro)";
-                cmd.Parameters.Add("Nome", SqlDbType.VarChar).Value = nome;
-                cmd.Parameters.Add("CPF", SqlDbType.VarChar).Value = cpf;
-                cmd.Parameters.Add("Endereco", SqlDbType.VarChar).Value = end;
-                cmd.Parameters.Add("Telefone", SqlDbType.VarChar).Value = telefone;
-                cmd.Parameters.Add("@Cadastro", SqlDbType.DateTime).Value = dhCadastro;
+			}
 
-				con.conectar();
+			if (cpf != "")
+			{ 
+			var dhCadastro = DateTime.Now;
+			cmd.CommandText = "insert into Cliente  (Nome, CPF, Endereco, Telefone, Cadastro) values  (@Nome, @CPF, @Endereco, @Telefone, @Cadastro)";
+			//cmd.Parameters.Add("Nome", SqlDbType.VarChar).Value = nome;
+			//cmd.Parameters.Add("CPF", SqlDbType.VarChar).Value = cpf;
+			//cmd.Parameters.Add("Endereco", SqlDbType.VarChar).Value = end;
+			//cmd.Parameters.Add("Telefone", SqlDbType.VarChar).Value = telefone;
+			//cmd.Parameters.Add("@Cadastro", SqlDbType.DateTime).Value = dhCadastro;
+			cmd.Parameters.AddWithValue("@Nome", nome);
+			cmd.Parameters.AddWithValue("@CPF", cpf);
+			cmd.Parameters.AddWithValue("@Endereco", end);
+			cmd.Parameters.AddWithValue("@Telefone", telefone);
+			cmd.Parameters.Add("@Cadastro", SqlDbType.DateTime).Value = dhCadastro;
+
+			try
+			{
+
+
+				cmd.Connection = cmd.Connection = con.conectar();
 				cmd.ExecuteNonQuery();
 				con.desconectar();
+				this.mensagem = "Cadastrado com sucesso!";
 				cadastrado = true;
-            }
-            catch
-            {
-                MessageBox.Show("Não foi possível cadastrar o cliente.");
-            }
+			}
+			catch
+			{
+				MessageBox.Show("Não foi possível cadastrar o cliente.");
+			}
+		}else
+			{
+				this.mensagem = "Erro";
+			}
+
+		
+			
             return cadastrado;
         }
 
@@ -213,7 +257,7 @@ namespace Estacionamento.Classes
                                                          from Vaga va
                                                          left join veiculo v on v.Placa = va.VeiculoPlaca
                                                          where cast(va.Entrada as date) between @DataInicial and @DataFinal 
-                                                         order by va.Id desc", con.ToString());
+                                                         order by va.Id desc", conexao);
                 da.SelectCommand.Parameters.Add("@DataInicial", SqlDbType.Date).Value = dataInicial;
                 da.SelectCommand.Parameters.Add("@DataFinal", SqlDbType.Date).Value = dataFinal;
                 da.Fill(historico);
@@ -230,7 +274,7 @@ namespace Estacionamento.Classes
             try
             {
                 DataTable dtVaga = new DataTable();
-                SqlDataAdapter daVaga = new SqlDataAdapter("select * from Vaga where Numero = @Numero and Saida is null", con.ToString());
+                SqlDataAdapter daVaga = new SqlDataAdapter("select * from Vaga where Numero = @Numero and Saida is null", conexao);
                 daVaga.SelectCommand.Parameters.Add("Numero", SqlDbType.Int).Value = numeroVaga;
                 daVaga.Fill(dtVaga);
                 if (dtVaga.Rows.Count != 0)
@@ -239,7 +283,7 @@ namespace Estacionamento.Classes
 					cmd.CommandText = "Update Vaga set Saida = @Saida where Id = @Id";
                     cmd.Parameters.Add("Id", SqlDbType.Int).Value = dtVaga.Rows[0]["Id"].ToString();
                     cmd.Parameters.Add("@Saida", SqlDbType.DateTime).Value = dhSaida;
-					con.conectar();
+					cmd.Connection = con.conectar();
 					cmd.ExecuteNonQuery();
 					con.desconectar();
 					new Impressao().Recibo(dtVaga.Rows[0]["VeiculoPlaca"].ToString(),

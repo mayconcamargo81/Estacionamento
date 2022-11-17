@@ -26,7 +26,7 @@ namespace Estacionamento.Presenters.Login
 
 			try
 			{
-				cmd.Connection = con.conectar();
+				cmd.Connection = cmd.Connection = con.conectar();
 				dr = cmd.ExecuteReader();
 				if (dr.HasRows)//se foi encontrado
 				{
@@ -54,7 +54,7 @@ namespace Estacionamento.Presenters.Login
 
 				try
 				{
-					cmd.Connection = con.conectar();
+					cmd.Connection = cmd.Connection = con.conectar();
 					cmd.ExecuteNonQuery();
 					con.desconectar();
 					this.mensagem = "Cadastrado com sucesso!";
